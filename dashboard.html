@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Walmart Delivery Optimization Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="style-dashboard.css" />
+  </head>
+  <body>
+    <div id="dashboard-page" class="dashboard-page">
+      <header class="header-bar">
+        <div class="header-logo">
+          <img src="Truck.png" alt="Walmart Logo" class="logo-icon" />
+          <span class="logo-text" style="color: rgb(255, 89, 0)"
+            ><b>ZhenLogix Delivery</b></span
+          >
+          <span class="logo-subtitle">Optimization Dashboard</span>
+        </div>
+        <div class="header-greeting" style="color: rgb(52, 25, 2)">
+          <b>Welcome back, Driver</b>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <section class="hero-section">
+          <h1 class="hero-title">ZhenLogix</h1>
+          <p class="hero-subtitle" style="color: rgba(245, 212, 2, 0.908)">
+            <b>
+              Streamline your delivery operations with AI-powered route
+              optimization, real-time weather insights, and intelligent planning
+              tools.</b
+            >
+          </p>
+        </section>
+
+        <div class="dashboard-grid">
+          <div class="grid-row-1">
+            <div class="card weather-card">
+              <h3 class="card-title">
+                <span class="icon-placeholder"></span> Weather Insights
+              </h3>
+              <div class="weather-input-group">
+                <input
+                  type="text"
+                  id="weather-location-input"
+                  class="form-input weather-input"
+                  value="Oklahoma City, United States"
+                />
+                <button
+                  id="update-weather-button"
+                  class="weather-update-button"
+                >
+                  Update
+                </button>
+              </div>
+              <p id="weather-error" class="error-message hidden"></p>
+              <div id="weather-data-display" class="weather-display hidden">
+                <p id="weather-city-country" class="weather-location"></p>
+                <div class="weather-main-info">
+                  <img
+                    id="weather-icon"
+                    src=""
+                    alt="Weather Icon"
+                    class="weather-icon"
+                  />
+                  <p id="weather-temp" class="weather-temp"></p>
+                </div>
+                <p id="weather-description" class="weather-description"></p>
+                <div class="weather-details-grid">
+                  <p id="weather-humidity" class="weather-detail"></p>
+                  <p id="weather-cloudiness" class="weather-detail"></p>
+                </div>
+              </div>
+              <div class="ai-suggestion-box">
+                <h4 class="ai-suggestion-title">AI Weather Suggestion:</h4>
+                <p id="ai-suggestion" class="ai-suggestion-text">
+                  Fetching AI suggestion...
+                </p>
+              </div>
+            </div>
+
+            <div class="card stats-card">
+              <h3 class="card-title">Today's Stats</h3>
+              <div class="stats-item">
+                <span class="stats-label">Deliveries</span>
+                <span class="stats-value green-text">12/15</span>
+              </div>
+              <div class="stats-item">
+                <span class="stats-label">Efficiency</span>
+                <span class="stats-value blue-text">94%</span>
+              </div>
+              <div class="stats-item">
+                <span class="stats-label">Time Saved</span>
+                <span class="stats-value blue-text">2.3 hrs</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-row-2">
+            <div class="card route-planning-card" id="route-planning-section">
+              <h3 class="card-title">
+                <span class="icon-placeholder"></span> Route Planning
+              </h3>
+              <p class="card-subtitle">Plan your optimal delivery route</p>
+              <div class="form-group">
+                <label for="source-location" class="form-label"
+                  >Source Location</label
+                >
+                <input
+                  type="text"
+                  id="source-location"
+                  class="form-input"
+                  placeholder="e.g., Walmart Distribution Center"
+                />
+              </div>
+              <div id="destinations-container" class="destinations-container">
+                <div class="form-group" id="destination-group-1">
+                  <label for="destination-1" class="form-label"
+                    >Destination 1</label
+                  >
+                  <input
+                    type="text"
+                    id="destination-1"
+                    class="form-input destination-input"
+                    placeholder="e.g., Customer Address 1"
+                  />
+                </div>
+              </div>
+              <button
+                type="button"
+                id="add-destination-button"
+                class="add-destination-button"
+              >
+                Add Destination
+              </button>
+              <button id="navigate-button" class="navigate-button">
+                Navigate with Maps
+              </button>
+            </div>
+
+            <div class="card map-card">
+              <h3 class="card-title">
+                <span class="icon-placeholder"></span> Interactive Map
+                <span class="live-tag">Live</span>
+              </h3>
+              <p class="card-subtitle">
+                Real-time location and route visualization
+              </p>
+              <div id="map" class="map-container"></div>
+              <div class="map-buttons">
+                <button id="show-current-location-button" class="map-button">
+                  Show Current Location
+                </button>
+                <button
+                  id="go-to-route-planning-button"
+                  class="map-button purple-button"
+                >
+                  Go To Route Planning
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="ai-insights-section">
+          <div class="card ai-insights-header">
+            <h3 class="card-title">
+              <span class="icon-placeholder"></span> AI-Powered Insights
+              <span class="live-tag">Live Analytics</span>
+            </h3>
+            <p class="card-subtitle">
+              Real-time optimization metrics and recommendations
+            </p>
+          </div>
+          <div class="ai-metrics-grid">
+            <div class="metric-box blue-metric">
+              <p class="metric-value">45 mins</p>
+              <p class="metric-label">Estimated Arrival</p>
+            </div>
+            <div class="metric-box green-metric">
+              <p class="metric-value">12 mins</p>
+              <p class="metric-label">Time Saved</p>
+            </div>
+            <div class="metric-box purple-metric">
+              <p class="metric-value">18%</p>
+              <p class="metric-label">Carbon Reduction</p>
+            </div>
+            <div class="metric-box blue-metric">
+              <p class="metric-value">94%</p>
+              <p class="metric-label">Efficiency Score</p>
+            </div>
+          </div>
+          <div class="card smart-recommendations">
+            <h3 class="card-title">Smart Recommendations</h3>
+            <div class="recommendation-grid">
+              <div class="recommendation-item">
+                <span class="icon-placeholder"></span>
+                <p class="recommendation-text">Peak Performance</p>
+                <p class="recommendation-detail">
+                  You're performing 12% better than average today!
+                </p>
+              </div>
+              <div class="recommendation-item">
+                <span class="icon-placeholder"></span>
+                <p class="recommendation-text">Route Optimization</p>
+                <p class="recommendation-detail">
+                  Current route saves 23% travel time vs. standard routing.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="demo-mode-alert">
+            ©2025 All Rights Reserved. ZhenLogix PVT LIMITED
+          </div>
+        </section>
+      </main>
+
+      <button id="toggle-chatbot-button" class="chatbot-toggle-button">
+        Chat
+      </button>
+
+      <div id="chatbot-container" class="chatbot-container hidden">
+        <div class="chatbot-header">
+          Delivery Chatbot
+          <button id="close-chatbot-button" class="chatbot-close-button">
+            ×
+          </button>
+        </div>
+        <div id="chat-window" class="chatbot-window custom-scrollbar">
+          <p id="chat-placeholder" class="chat-placeholder">
+            Type a message to start chatting!
+          </p>
+        </div>
+        <div class="chatbot-input-area">
+          <input
+            type="text"
+            id="chat-input"
+            class="chatbot-input"
+            placeholder="Type your message..."
+          />
+          <button id="send-chat-button" class="chatbot-send-button">
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="custom-modal" class="custom-modal hidden">
+      <div class="modal-content">
+        <h3 id="modal-title" class="modal-title"></h3>
+        <p id="modal-message" class="modal-message"></p>
+        <button id="modal-ok-button" class="modal-button">OK</button>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script type="module" src="dashboard.js"></script>
+  </body>
+</html>

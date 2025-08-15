@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Walmart Delivery Optimization Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style-login.css" />
+  </head>
+  <body>
+    <div id="login-page" class="login-page">
+      <div class="login-left-panel">
+        <div class="login-feature-item">
+          <img
+            src="Truck.png"
+            alt="Walmart Logo"
+            class="login-feature-icon"
+          />
+          <div class="login-feature-text-group">
+            <span class="login-feature-title" style="color: aliceblue;"><b>Walmart Delivery</b></span>
+            <span class="login-feature-subtitle"style="color: aliceblue;"
+              >Last-Mile Optimization Platform</span
+            >
+          </div>
+        </div>
+        <div class="login-feature-item">
+          <img
+            src="location.png"
+            alt="Location Icon"
+            class="login-feature-icon"
+          />
+          <div class="login-feature-text-group">
+            <span class="login-feature-title" style="color: aliceblue;"><b>Smart Route Planning</b></span>
+            <span class="login-feature-subtitle"style="color: aliceblue;"
+              >AI-powered route optimization for maximum efficiency</span
+            >
+          </div>
+        </div>
+        <div class="login-feature-item">
+          <img
+            src="realtimepng.png"
+            alt="Clock Icon"
+            class="login-feature-icon"
+          />
+          <div class="login-feature-text-group">
+            <span class="login-feature-title" style="color: aliceblue;"><b>Real-Time Tracking</b></span>
+            <span class="login-feature-subtitle"style="color: aliceblue;"
+              >Live updates and delivery status monitoring</span
+            >
+          </div>
+        </div>
+        <div class="login-feature-item">
+          <img
+            src="secure.jpeg"
+            alt="Lock Icon"
+            class="login-feature-icon"
+          />
+          <div class="login-feature-text-group">
+            <span class="login-feature-title"style="color: aliceblue;"><b>Secure Platform</b></span>
+            <span class="login-feature-subtitle"
+              style="color: aliceblue;">Enterprise-grade security for all operations</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="login-right-panel">
+        <div class="login-card">
+          <img
+            src="Truck.png"
+            alt="Truck Icon"
+            class="login-card-icon"
+          />
+          <h2 class="login-card-welcome"><b>Welcome to ZhenLogix</b></h2>
+          <p class="login-card-subtitle">Sign in to your delivery dashboard</p>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="username" class="form-label">Username</label>
+              <input
+                type="text"
+                id="username"
+                class="form-input"
+                placeholder="Enter your username"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="form-input"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <button type="submit" class="login-button">Sign In</button>
+          </form>
+          <p class="demo-version-note">
+            ZhenLogix - Use any credentials to login
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="custom-modal" class="custom-modal hidden">
+      <div class="modal-content">
+        <h3 id="modal-title" class="modal-title"></h3>
+        <p id="modal-message" class="modal-message"></p>
+        <button id="modal-ok-button" class="modal-button">OK</button>
+      </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
